@@ -11,11 +11,152 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             //AddedEntities();
+
             //ColorTest();
+
             //CarTest();
-             GetCarDetailsTest();
+
+            //GetCarDetailsTest();
+
             //MaintenanceTimeTest();
 
+            //CustomerTest();
+
+            //UserTest();
+
+            //RentalTest();
+
+        }
+
+
+
+
+
+
+        private static void RentalTest()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            Rental rental1 = new Rental();
+            rental1.Id = 1;
+            rental1.CarId = 1;
+            rental1.CustomerId = 1;
+            rental1.RentDate = new DateTime(2022, 3, 05);
+
+
+            Rental rental2 = new Rental();
+            rental2.Id = 2;
+            rental2.CarId = 2;
+            rental2.CustomerId = 2;
+            rental2.RentDate = new DateTime(2022, 6, 12);
+
+
+            Console.WriteLine(rentalManager.Update(rental1).Message);
+            Console.WriteLine(rentalManager.Update(rental2).Message);
+
+
+            Console.WriteLine("Kiralanma tarihi: " + rentalManager.GetById(1).Data.RentDate);
+
+            var result = rentalManager.GetAll();
+
+            if (result.Success)
+            {
+                foreach (var rental in result.Data)
+                {
+                    Console.WriteLine(rental.RentDate.ToString() + " " + rental.ReturnDate.ToString());
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+
+
+
+        private static void UserTest()
+        {
+            User user1 = new User();
+            user1.Id = 1;
+            user1.FirstName = "Emre";
+            user1.LastName = "Aydın";
+            user1.Email = "abc@gmail.com";
+            user1.Password = "12345";
+
+            User user2 = new User();
+            user2.Id = 2;
+            user2.FirstName = "Yunus";
+            user2.LastName = "Aydın";
+            user2.Email = "xyz@gmail.com";
+            user2.Password = "123";
+
+            User user3 = new User();
+            user3.Id = 3;
+            user3.FirstName = "Ahmet";
+            user3.LastName = "Aydın";
+            user3.Email = "qwe@gmail.com";
+            user3.Password = "789";
+
+
+            UserManager userManager = new UserManager(new EfUserDal());
+            Console.WriteLine(userManager.Add(user1).Message);
+            Console.WriteLine(userManager.Add(user2).Message);
+            Console.WriteLine(userManager.Add(user3).Message);
+
+            var result = userManager.GetAll();
+
+            if (result.Success)
+            {
+                foreach (var user in result.Data)
+                {
+                    Console.WriteLine(user.FirstName + " " + user.LastName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+        }
+
+
+
+
+
+
+        private static void CustomerTest()
+        {
+            Customer customer1 = new Customer();
+            customer1.UserId = 1;
+            customer1.CompanyName = "Emre AŞ";
+
+            Customer customer2 = new Customer();
+            customer2.UserId = 2;
+            customer2.CompanyName = "Yunus AŞ";
+
+            Customer customer3 = new Customer();
+            customer3.UserId = 3;
+            customer3.CompanyName = "Ahmet AŞ";
+
+
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            Console.WriteLine(customerManager.Update(customer1).Message);
+            Console.WriteLine(customerManager.Update(customer2).Message);
+            Console.WriteLine(customerManager.Update(customer3).Message);
+
+            var result = customerManager.GetAll();
+
+            if (result.Success)
+            {
+                foreach (var customer in result.Data)
+                {
+                    Console.WriteLine(customer.CompanyName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
         }
 
 
@@ -39,6 +180,9 @@ namespace ConsoleUI
             }
         }
 
+
+
+
         private static void GetCarDetailsTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
@@ -50,6 +194,9 @@ namespace ConsoleUI
 
             }
         }
+
+
+
 
         private static void CarTest()
         {
@@ -74,6 +221,11 @@ namespace ConsoleUI
             }
         }
 
+
+
+
+
+
         private static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorDal());
@@ -84,6 +236,10 @@ namespace ConsoleUI
 
             }
         }
+
+
+
+
 
         private static void AddedEntities()
         {
