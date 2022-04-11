@@ -235,6 +235,8 @@ namespace ConsoleUI
                 Console.WriteLine(color.ColorId + " / " + color.ColorName);
 
             }
+
+            
         }
 
 
