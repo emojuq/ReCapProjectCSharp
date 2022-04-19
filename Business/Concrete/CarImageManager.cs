@@ -89,7 +89,7 @@ namespace Business.Concrete
             var result = _carImageDal.GetAll(c=>c.CarId==carId).Count;
             if (result >= 5)
             {
-                return new ErrorResult();
+                return new ErrorResult(Messages.CarImageLimitError);
             }
             return new SuccessResult();
         }

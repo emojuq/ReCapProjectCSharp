@@ -52,5 +52,6 @@ namespace Business.Constants
 
 
         public static string MaintenanceTime = "Sistem Bakımda";
+        public static string CarImageLimitError = "5'ten fazla araba resmi ekleyemezsiniz";
     }
 }
