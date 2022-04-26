@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -82,21 +83,21 @@ namespace ConsoleUI
             user1.FirstName = "Emre";
             user1.LastName = "Aydın";
             user1.Email = "abc@gmail.com";
-            user1.Password = "12345";
+            
 
             User user2 = new User();
             user2.Id = 2;
             user2.FirstName = "Yunus";
             user2.LastName = "Aydın";
             user2.Email = "xyz@gmail.com";
-            user2.Password = "123";
+            
 
             User user3 = new User();
             user3.Id = 3;
             user3.FirstName = "Ahmet";
             user3.LastName = "Aydın";
             user3.Email = "qwe@gmail.com";
-            user3.Password = "789";
+           
 
 
             UserManager userManager = new UserManager(new EfUserDal());
@@ -104,19 +105,19 @@ namespace ConsoleUI
             Console.WriteLine(userManager.Add(user2).Message);
             Console.WriteLine(userManager.Add(user3).Message);
 
-            var result = userManager.GetAll();
+           
 
-            if (result.Success)
-            {
-                foreach (var user in result.Data)
-                {
-                    Console.WriteLine(user.FirstName + " " + user.LastName);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
+            //if (result.Success)
+            //{
+            //    foreach (var user in result.Data)
+            //    {
+            //        Console.WriteLine(user.FirstName + " " + user.LastName);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
         }
 
 
@@ -127,15 +128,15 @@ namespace ConsoleUI
         private static void CustomerTest()
         {
             Customer customer1 = new Customer();
-            customer1.UserId = 1;
+            customer1.Id = 1;
             customer1.CompanyName = "Emre AŞ";
 
             Customer customer2 = new Customer();
-            customer2.UserId = 2;
+            customer2.Id = 2;
             customer2.CompanyName = "Yunus AŞ";
 
             Customer customer3 = new Customer();
-            customer3.UserId = 3;
+            customer3.Id = 3;
             customer3.CompanyName = "Ahmet AŞ";
 
 

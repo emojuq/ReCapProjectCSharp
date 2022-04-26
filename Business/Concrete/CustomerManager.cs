@@ -43,7 +43,7 @@ namespace Business.Concrete
 
         public IDataResult<Customer> GetById(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c=>c.UserId==id),Messages.customerGetById);
+            return new SuccessDataResult<Customer>(_customerDal.Get(c=>c.Id==id),Messages.customerGetById);
         }
 
         public IResult Update(Customer customer)

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
@@ -23,18 +24,16 @@ namespace Business.Concrete
           
         }
 
+        [SecuredOperation("admin,car.add")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 
-            
                 _carDal.Add(car);
                 return new SuccessResult(Messages.carAddedMessage);
             
-           
-            
-            
         }
+
 
         public IResult Delete(Car car)
         {
@@ -42,10 +41,12 @@ namespace Business.Concrete
             return new SuccessResult(Messages.carDeletedMessage);
         }
 
+
+        [SecuredOperation("admin,car.getall")]
         public IDataResult<List<Car>> GetAll()
         {
 
-            if (DateTime.Now.Hour == 17) //eğer saat 17 ise sistem bakımda error mesajı verir,değilse success olur
+            if (DateTime.Now.Hour == 23) 
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
