@@ -3,6 +3,8 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -41,7 +43,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.carDeletedMessage);
         }
 
-
+        [CacheAspect]
+        [PerformanceAspect(0)]
         [SecuredOperation("admin,car.getall")]
         public IDataResult<List<Car>> GetAll()
         {
@@ -53,6 +56,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.carListed);
         }
 
+        [SecuredOperation("admin")]
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
 
