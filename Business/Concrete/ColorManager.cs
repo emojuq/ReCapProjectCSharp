@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
-            if (DateTime.Now.Hour == 17) //eğer saat 17 ise sistem bakımda error mesajı verir,değilse success olur
+            if (DateTime.Now.Hour == 00) 
             {
                 return new ErrorDataResult<List<Color>>(Messages.MaintenanceTime);
             }

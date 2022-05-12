@@ -56,6 +56,8 @@ namespace WebAPI
             //    services.AddSingleton<IRentalService, RentalManager>();
             //    services.AddSingleton<IRentalDal, EfRentalDal>();
 
+            services.AddCors();
+            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
@@ -91,6 +93,8 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(response => response.WithOrigins("http://localhost:4200/").AllowAnyHeader().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
